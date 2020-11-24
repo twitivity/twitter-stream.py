@@ -26,7 +26,7 @@ setup(
     license="MIT",
     install_requires=REQUIRED,
     include_package_data=True,
-    py_modules=["twitter-stream.py"],
+    py_modules=["twitter-stream"],
     classifiers=[
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python",
