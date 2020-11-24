@@ -4,7 +4,7 @@ from setuptools import setup
 NAME: str = "twitter-stream.py"
 AUTHOR: str = "Saadman Rafat"
 DESCRIPTION: str = "Python Client For Twitter Streaming API v2"
-URL: str = "https://github.com/saadmanrafat/twitivity"
+URL: str = "https://github.com/twitivity/twitter-stream.py"
 REQUIRES_PYTHON: str = ">=3.6.0"
 VERSION = "0.1.1"
 REQUIRED = ["requests"]
