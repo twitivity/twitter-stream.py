@@ -1,7 +1,8 @@
 # twitter-stream.py
 
 ## Quickstart
-![](assets/demo.gif)
+
+<img src="assets/demo.gif" width="600" height="550" />
 
 
 ## Installation
