@@ -26,14 +26,14 @@ setup(
     license="MIT",
     install_requires=REQUIRED,
     include_package_data=True,
-    py_modules=["twitter-stream"],
+    py_modules=["twitter_stream"],
     classifiers=[
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
-        "Programming Language :: Python :: 3.8"
-	"Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: Implementation :: CPython",
         "Programming Language :: Python :: Implementation :: PyPy",
     ],
