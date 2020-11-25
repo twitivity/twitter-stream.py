@@ -5,6 +5,10 @@
 ## Quickstart
 ![](assets/quickstart.png)
 
+### Bearer Token
+```
+~$ export BEARER_TOKEN=BEARER TOKEN
+```
 ### Adding Rules
 ```python
 >>> import json
