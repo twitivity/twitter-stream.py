@@ -10,6 +10,6 @@
 
 ## Demo
 
-[![asciicast](https://asciinema.org/a/374925.svg)](https://asciinema.org/a/374925)
+<img src="assets/demo.gif" width="700px" height="800px"/>
 
 
