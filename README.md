@@ -1,5 +1,5 @@
 # twitter-stream.py
-
+[![v2](https://img.shields.io/endpoint?url=https%3A%2F%2Ftwbadges.glitch.me%2Fbadges%2Fv2)](https://developer.twitter.com/en/docs/twitter-api)
 # Filtered Stream
 
 ## Quickstart
@@ -55,6 +55,3 @@
 
 # Documentation
 Read the documentation at [twitivity.dev/docs](https://twitivity.dev/docs/twitter-stream.py/)
-
-# Support This Repository
-`BTC: bc1q2t4zv83g20u8gt2ly2cquwr57eawqxus092jwu`
