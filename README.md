@@ -49,4 +49,8 @@
 ~$ pip3 install twitter-stream.py
 ```
 
+# Documentation
+Read the documentation at [twitivity.dev/docs](https://twitivity.dev/docs/twitter-stream.py/)
 
+# Support the repository
+`BTC: bc1q2t4zv83g20u8gt2ly2cquwr57eawqxus092jwu`
