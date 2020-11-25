@@ -10,6 +10,6 @@
 
 ## Demo
 
-<img src="assets/demo.gif" width="700px" height="800px"/>
+<img src="assets/demo.gif" width="800px" height="750px"/>
 
 
