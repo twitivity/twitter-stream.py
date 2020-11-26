@@ -6,7 +6,7 @@ AUTHOR: str = "Saadman Rafat"
 DESCRIPTION: str = "Python Client For Twitter Streaming API v2"
 URL: str = "https://github.com/twitivity/twitter-stream.py"
 REQUIRES_PYTHON: str = ">=3.6.0"
-VERSION = "0.1.1"
+VERSION = "0.2.0"
 REQUIRED = ["requests"]
 EMAIL = "saadmanhere@gmail.com"
 
