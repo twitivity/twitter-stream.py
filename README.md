@@ -65,17 +65,9 @@ Read the documentation at [twitivity.dev/docs](https://twitivity.dev/docs/twitte
 <hr>
 
 # Support
-```
-  
+```  
 Please consider supporting this repository. 
-Our objective is to build open-source tools. 
-Aiding Data Scientists, ML Engineers, 
-Academics, and Developers in consuming 
-Twitter APIs in the easiest way possible. 
-While respecting Twitter's policies and 
-guidelines.  
 
 BTC: bc1q2t4zv83g20u8gt2ly2cquwr57eawqxus092jwu
 ETH: 0xf6169c013ac11eEFD5e87A60F8ED31AA75D874a7 
-
 ```
