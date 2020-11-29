@@ -4,8 +4,14 @@
 # Sampled Stream
 
 Construct cleaner and concise queries. Subclass SampledStream, name your desired query parameters, and assign their values in a list. twitter-stream.py will take care of the rest.
+[Here are the list of query parameters](https://developer.twitter.com/en/docs/twitter-api/tweets/sampled-stream/api-reference/get-tweets-sample-stream)
 
 ![](assets/SampledStream.png)
+
+# Recent Stream
+Get Recent Stream Based on your queries. [Checkout the list of query parameters for Recent Stream](https://developer.twitter.com/en/docs/twitter-api/tweets/search/api-reference/get-tweets-search-recent)
+
+![](assets/RecentStream.png)
 
 # Filtered Stream
 
@@ -18,7 +24,7 @@ Construct cleaner and concise queries. Subclass SampledStream, name your desired
 ### Adding Rules
 ```python
 >>> import json
->>> from twitter_stream import FilteredStream
+>>> from twitter_stream.twitter_stream import FilteredStream
 
 >>> stream = FilteredStream()
 >>> rules = {"add": [{'value': 'from: twitivitydev'}]}
@@ -28,7 +34,7 @@ Construct cleaner and concise queries. Subclass SampledStream, name your desired
 ### Deleting Rules
 ```python
 >>> import json
->>> from twitter_stream import FilteredStream
+>>> from twitter_stream.twitter_stream import FilteredStream
 
 >>> stream = FilteredStream()
 >>> response = stream.delete_rule({"delete": {"ids": ['1331486534579589120']}})
@@ -38,7 +44,7 @@ Construct cleaner and concise queries. Subclass SampledStream, name your desired
 ### Get Rules
 ```python
 >>> import json
->>> from twitter_stream import FilteredStream
+>>> from twitter_stream.twitter_stream import FilteredStream
 
 >>> stream = FilteredStream()
 >>> print(json.dumps(stream.get_rules(), indent=4, sort_keys=True))
@@ -47,7 +53,7 @@ Construct cleaner and concise queries. Subclass SampledStream, name your desired
 ### Stream
 ```python
 >>> import json
->>> from twitter_stream import FilteredStream
+>>> from twitter_stream.twitter_stream import FilteredStream
 
 >>> stream = FilteredStream()
 >>> for tweet in stream.connect():
