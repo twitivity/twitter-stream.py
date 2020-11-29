@@ -33,7 +33,7 @@ For `FilteredStream` documentations on adding, deleting and retriving rules can 
 <hr>
 
 # Support
-```  
+```shell
 Please consider supporting this repository. 
 
 BTC: bc1q2t4zv83g20u8gt2ly2cquwr57eawqxus092jwu
