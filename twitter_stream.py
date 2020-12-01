@@ -84,20 +84,67 @@ class API:
 
 
 class FilteredStream(API):
+    """
+    Endpoint: /2/tweets/search/stream
+    replaces legacy endpoint v1.1 statuses/filter
+    """
+
     _product = "tweets"
     _endpoint = "search/stream"
     _stream = True
 
     def add_rule(self, data: dict) -> json:
+        """Add or Remove upto 25 rules.
+        /2/tweets/search/stream/rules
+
+        List of Rules: (https://developer.twitter.com/en/docs/
+        twitter-api/tweets/filtered-stream/integrate/build-a-rule)
+
+        :params data: a dict with a list of rules
+        :return: json
+
+        Usage:
+
+        stream = FilteredStream()
+        rules = {
+            "add": [
+                {"value": "dog has: images", "tag": "dog pictures"}
+            ]
+        }
+        stream.add_rule(data=rules)
+        """
         return self.api(method="POST", endpoint="search/stream/rules", data=data).json()
 
     def get_rules(self) -> json:
+        """Retrieve your stream's rules
+        /2/tweets/search/stream/rules
+        :return: json
+        """
         return self.api(method="GET", endpoint="search/stream/rules").json()
 
     def delete_rule(self, data: dict):
+        """Add or Remove upto 25 rules.
+        /2/tweets/search/stream/rules
+
+        List of Rules: (https://developer.twitter.com/en/docs/
+        twitter-api/tweets/filtered-stream/integrate/build-a-rule)
+
+        :params data: a dict with a list rule Ids
+        :return: json
+
+        Usage:
+
+        stream = FilteredStream()
+        rules = {
+            "delete": {
+                "ids": ['1331486534579589120'] # example id
+            }
+        }
+        """
         return self.api(method="POST", endpoint="search/stream/rules", data=data).json()
 
     def delete_all_rules(self) -> json:
+        """Deletes all your rules automatically"""
         try:
             rules = self.get_rules().json()
             ids = list(map(lambda rule: rule["id"], rules["data"]))
@@ -107,6 +154,41 @@ class FilteredStream(API):
 
 
 class SampledStream(API):
+    """Endpoint: /2/tweets/sample/stream
+    Replacement for: v1.1 statuses/sample
+
+    Subclasses the API class. Overrides variables
+    `_product`, `_endpoint`, '_has_params', and
+    '_stream'. The inherited `connect()` method
+    from the super class does the streaming.
+
+    The inherited connect method also helps in
+    evaluating and constructing queries for sampled
+    stream.
+
+    List of query parameters (https://developer.twitter.com/en/docs/
+    twitter-api/tweets/sampled-stream/api-reference/get-tweets-sample-stream)
+
+
+    Usage:
+
+    Name the query parameter and assign their values in a list.
+    The `connect()` method recognizes the query parameters and
+    and starts streaming.
+
+
+    class Stream(SampledStream):
+        user_fields = ['name', 'location', 'public_metrics']
+        expansions = ['author_id']
+
+    stream = Stream()
+
+    for tweets in stream.connect():
+        print(json.dumps(tweets, indent=4, sort_keys=True)))
+
+
+    """
+
     _product = "tweets"
     _endpoint = "sample/stream"
     _has_params = True
@@ -114,6 +196,17 @@ class SampledStream(API):
 
 
 class RecentSearch(API):
+    """Endpoint: /2/tweets/search/recent
+    Legacy endpoint: v1.1 search/tweets
+
+    Behaves the same way as SampledStream.
+
+    List of query parameters
+    (https://developer.twitter.com/en/docs/twitter-api/
+     tweets/search/api-reference/get-tweets-search-recent)
+
+    """
+
     _product = "tweets"
     _endpoint = "search/recent"
     _has_params = True
