@@ -19,6 +19,12 @@ Get Recent Stream Based on your queries. [Checkout the list of query parameters 
 
 ![](assets/quickstart.png)
 
+# Tweet LookUp
+
+Returns information about a Tweet or group of Tweets [List of Query Parameters](https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference)
+
+![](assets/TweetLookUp.png)
+
 ### Bearer Token
 ```
 ~$ export BEARER_TOKEN=BEARER TOKEN
