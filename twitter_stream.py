@@ -166,8 +166,9 @@ class SampledStream(API):
     evaluating and constructing queries for sampled
     stream.
 
-    List of query parameters (https://developer.twitter.com/en/docs/
-    twitter-api/tweets/sampled-stream/api-reference/get-tweets-sample-stream)
+    List of query parameters
+    (https://developer.twitter.com/en/docs/twitter-api/
+    tweets/sampled-stream/api-reference/get-tweets-sample-stream)
 
 
     Usage:
@@ -219,3 +220,25 @@ class RecentSearch(API):
         "start_time",
         "until_id",
     ]
+
+
+class TweetLookUp(API):
+    """Endpoint: /2/tweets
+    Legacy endpoint: v1.1 statuses/show, v1.1 status/lookup
+
+    List of query parameters:
+    (https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference)
+    """
+
+    def get(self) -> json:
+
+        response = requests.request(
+            method="GET",
+            url="https://api.twitter.com/2/tweets",
+            params=self._query(),
+            headers={
+                "Content-type": "application/json",
+                "Authorization": f"Bearer {os.environ['BEARER_TOKEN']}",
+            },
+        )
+        return response.json()
