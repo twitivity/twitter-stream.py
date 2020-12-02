@@ -33,8 +33,8 @@ import json
 from twitter_stream import RecentSearch
 
 class Stream(RecentSearch):
-    user_fields = ['python']
-    expansions = ['10']
+    query = ['python']
+    max_results = ['10']
     tweet_fields = ['created_at', 'lang', 'conversation_id']
 
 stream = Stream()
