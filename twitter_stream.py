@@ -231,7 +231,6 @@ class TweetLookUp(API):
     """
 
     def get(self) -> json:
-
         response = requests.request(
             method="GET",
             url="https://api.twitter.com/2/tweets",
@@ -242,3 +241,31 @@ class TweetLookUp(API):
             },
         )
         return response.json()
+
+
+class UserLookUp(API):
+    """Endpoint /2/users
+    Legacy Endpoint v1.1 users/lookup
+    """
+
+    def get(self, endpoint: str = "https://api.twitter.com/2/users") -> json:
+        return requests.request(
+            method="GET",
+            url=endpoint,
+            params=self._query(),
+            headers={
+                "Content-type": "application/json",
+                "Authorization": f"Bearer {os.environ['BEARER_TOKEN']}",
+            },
+        ).json()
+
+    def get_by_usernames(
+        self, endpoint: str = "https://api.twitter.com/2/users/by"
+    ) -> json:
+        return self.get(endpoint=endpoint)
+
+    def get_details_by_username(
+        self, data: str, endpoint: str = "https://api.twitter.com/2/users/by/username"
+    ) -> json:
+        endpoint = endpoint + "/" + data
+        return self.get(endpoint=endpoint)
