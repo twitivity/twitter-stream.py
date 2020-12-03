@@ -157,8 +157,9 @@ print(json.dumps(user.get_details_by_username("TwitterDev"), indent=4))
 
 
 ## Installation
-```bash
+```python
 ~$ pip3 install twitter-stream.py
 ```
+<br>
 
-
+<p align="center"><a href="https://github.com/twitivity/twitter-stream.py"><img src="http://randojs.com/images/barsSmall.gif" alt="Animated footer bars" width="100%"/></a></p>
