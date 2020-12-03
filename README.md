@@ -151,12 +151,4 @@ print(json.dumps(user.get_details_by_username("TwitterDev"), indent=4))
 ~$ pip3 install twitter-stream.py
 ```
 
-<hr>
 
-# Support
-```shell
-Please consider supporting this repository. 
-
-BTC: bc1q2t4zv83g20u8gt2ly2cquwr57eawqxus092jwu
-ETH: 0xf6169c013ac11eEFD5e87A60F8ED31AA75D874a7 
-```
