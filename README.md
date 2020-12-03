@@ -1,7 +1,17 @@
-# twitter-stream.py
+<p align="center"><a href="https://github.com/twitivity/twitter-stream.py"><img src="https://avatars0.githubusercontent.com/u/74627580?s=60&v=4" alt="Gray shape shifter" height="60"/></a></p>
 
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/twitter-stream.py) [![v2](https://img.shields.io/endpoint?url=https%3A%2F%2Ftwbadges.glitch.me%2Fbadges%2Fv2)](https://developer.twitter.com/en/docs/twitter-api) 
-[![Downloads](https://pepy.tech/badge/twitter-stream-py)](https://pepy.tech/project/twitter-stream-py) ![PyPI - License](https://img.shields.io/pypi/l/twitter-stream.py) 
+<h1 align="center">twitter-stream.py</h1>
+<p align="center">Python Client For Twitter API v2</p>
+
+<p align="center">
+	<a href="https://github.com/twitivity/twitter-stream.py"><img src="https://img.shields.io/pypi/pyversions/twitter-stream.py" height="20"/></a>
+    <a href="https://github.com/twitivity/twitter-stream.py"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Ftwbadges.glitch.me%2Fbadges%2Fv2" alt="Twitter APi V2" height="20"/></a>
+        <a href="https://github.com/twitivity/twitter-stream.py"><img src="https://img.shields.io/pypi/l/twitter-stream.py" alt="Twitter APi V2" height="20"/></a>
+</p><br/><br/>
+
+
+
+# :rocket: Quick Start
 
 ## Sampled Stream
 
