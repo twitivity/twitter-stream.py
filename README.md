@@ -41,8 +41,9 @@ To get more insights into other API endpoints. Visit the [examples](https://gith
 ~$ pip3 install twitter-stream.py
 ~$ export BEARER_TOKEN=BEARER TOKEN
 ```
+<hr>
 
-## :purple_heart: Sponsor
+## Sponsor
 
 :small_blue_diamond: `BTC: bc1q2t4zv83g20u8gt2ly2cquwr57eawqxus092jwu`<br>
 :small_blue_diamond: `ETH: 0xf6169c013ac11eEFD5e87A60F8ED31AA75D874a7`
