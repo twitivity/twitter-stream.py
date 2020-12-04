@@ -1,3 +1,4 @@
+
 <p align="center"><a href="https://github.com/twitivity/twitter-stream.py"><img src="https://avatars1.githubusercontent.com/u/74627580?s=400&u=2a5502073d9f5d79b08aeac58df8171b262cb010&v=4" height="120"/></a></p>
 
 <h1 align="center">twitter-stream.py</h1>
@@ -9,14 +10,11 @@
         <a href="https://github.com/twitivity/twitter-stream.py"><img src="https://img.shields.io/pypi/l/twitter-stream.py" alt="Twitter APi V2" height="20"/></a>
 </p><br/><br/>
 
+# :rocket: What is Twitter Stream ?
+[Twitter-Stream.py](https://github.com/twitivity/twitter-stream.py) a python API client for Twitter API v2 now supports 
+`FilteredStream`, `SampledStream`, `RecentSearch`, `TweetLookUp`, and  `UserLookUp`. It makes it easier to get started with Twitter's New API. 
 
-
-# :rocket: Quick Start
-
-## Sampled Stream
-
-Construct cleaner and concise queries. Subclass SampledStream, name your desired query parameters, and assign their values in a list. twitter-stream.py will take care of the rest.
-[Here are the list of query parameters](https://developer.twitter.com/en/docs/twitter-api/tweets/sampled-stream/api-reference/get-tweets-sample-stream)
+Let's see an example of how `twitter-stream.py` handles `SampledStream`. Sampled Stream delivers about 1% of Twitter's publicly available tweets in real-time and paints a picture of general sentiments, recent trends, and global events.
 
 ```python
 # sampled_stream.py
@@ -34,129 +32,18 @@ for tweet in stream.connect():
     print(json.dumps(tweet, indent=4))
 ```
 
-## Recent Stream
-Get Recent Stream Based on your queries. [Checkout the list of query parameters for Recent Stream](https://developer.twitter.com/en/docs/twitter-api/tweets/search/api-reference/get-tweets-search-recent)
-```python
-# recent_search.py
+Is this all you have to do to start streaming? Yes. Are these all the data points available to you? No. Let's discuss `line number 5-7`. [Twitter's Official Documentation](https://developer.twitter.com/en/docs/twitter-api/tweets/sampled-stream/api-reference/get-tweets-sample-stream) lists an elaborate set of query parameters. You can use these queries to get the data you need. We are subclassing `SampledStream` and carefully constructing clear and eloquent queries in `line 5-7`. And you can do this for all the query parameters listed in the `SampledStream` [API Reference](https://developer.twitter.com/en/docs/twitter-api/tweets/sampled-stream/api-reference/get-tweets-sample-stream).
 
-import json
-from twitter_stream import RecentSearch
+To get more insights into other API endpoints. Visit the [examples](https://github.com/twitivity/twitter-stream.py/examples/) folder and our documentations [twitivity.dev](http://twitivity.dev/docs/).
 
-class Stream(RecentSearch):
-    query = ['python']
-    max_results = ['10']
-    tweet_fields = ['created_at', 'lang', 'conversation_id']
-
-stream = Stream()
-
-for tweet in stream.connect():
-    print(json.dumps(tweet, indent=4))
+# Installation and Setup
 ```
-
-## Filtered Stream
-
-For `FilteredStream` documentations on adding, deleting and retriving rules can be found here.
-[twitivity.dev/docs](https://twitivity.dev/docs/twitter-stream.py/)
-
-```python
-# filtered_stream.py
-
-import json
-from twitter_stream import FilteredStream
-
-rules: list = [
-    {"value": "dog has:images", "tag": "dog pictures"},
-    {"value": "cat has:images -grumpy", "tag": "cat pictures"}
-]
-stream = FilteredStream()
-
-stream.add_rule(data={"add": rules})
-
-for tweet in stream.connect():
-    print(json.dumps(tweet, indent=4))
-```
-
-## TweetLookUp
-
-Returns information about a Tweet or group of Tweets [List of Query Parameters](https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference)
-```python
-# tweet_lookup.py
-
-import json
-from twitter_stream import TweetLookUp
-
-class Tweet(TweetLookUp):
-    ids = ['1261326399320715264','1278347468690915330']
-    expansions = ['author_id']
-    tweet_rules = ['created_at']
-    user_fields = ['username', 'verified']
-
-tweet = Tweet()
-print(json.dumps(tweet, indent=4, sort_keys=True))
-```
-
-## UserLookUp
-Returns a variety of information about one or more users specified by the requested **IDs**.
-[List of Query Parameters](https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users)
-
-```python
-# tweet_lookup.py
-
-import json
-from twitter_stream import UserLookUp
-
-class User(UserLookUp):
-    ids = ['2244994945', '783214']
-    expansions = ["pinned_tweet_id"]
-    user_fields = ["created_at"]
-    tweet_fields = ["created_at"]
-
-user = User()
-print(json.dumps(user.get(), indent=4))
-```
-
-Returns a variety of information about one or more users specified by their **usernames**.
-[List of Query Parameters](https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users-by)
-```python
-# tweet_lookup_by_username.py
-
-import json
-from twitter_stream import UserLookUp
-
-class User(UserLookUp):
-    usernames = ['TwitterDev', 'Twitter']
-    expansions = ["pinned_tweet_id"]
-    user_fields = ["created_at"]
-    tweet_fields = ["created_at"]
-
-user = User()
-print(json.dumps(user.get_by_usernames(), indent=4))
-```
-
-Returns a variety of information about one or more users specified by their usernames.
-[List of Query Parameters](https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users-by-username-username)
-```python
-# tweet_detail_lookup_by_username.py
-import json
-from twitter_stream import UserLookUp
-
-class User(UserLookUp):
-    expansions = ["pinned_tweet_id"]
-    user_fields = ["created_at"]
-    tweet_fields = ["created_at"]
-
-user = User()
-print(json.dumps(user.get_details_by_username("TwitterDev"), indent=4))
-```
-
-### Bearer Token
-```
+~$ pip3 install twitter-stream.py
 ~$ export BEARER_TOKEN=BEARER TOKEN
 ```
 
+## :clap: Stargazers
+[![Stargazers repo roster for @twitivity/twitter-stream.py](http://bytecrank.com/nastyox/reporoster/php/stargazersSVG.php?user=twitivity&repo=twitter-stream.py)](https://github.com/nastyox/Rando.js/stargazers)
 
-## Installation
-```python
-~$ pip3 install twitter-stream.py
-```
+
 
