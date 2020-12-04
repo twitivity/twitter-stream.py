@@ -36,7 +36,7 @@ Is this all you have to do to start streaming? Yes. Are these all the data point
 
 To get more insights into other API endpoints. Visit the [examples](https://github.com/twitivity/twitter-stream.py/tree/master/examples) folder and our documentations [twitivity.dev](http://twitivity.dev/docs/).
 
-# :pushpin: Installation and Setup
+# Installation and Setup
 ```
 ~$ pip3 install twitter-stream.py
 ~$ export BEARER_TOKEN=BEARER TOKEN
