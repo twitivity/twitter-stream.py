@@ -36,14 +36,16 @@ Is this all you have to do to start streaming? Yes. Are these all the data point
 
 To get more insights into other API endpoints. Visit the [examples](https://github.com/twitivity/twitter-stream.py/tree/master/examples) folder and our documentations [twitivity.dev](http://twitivity.dev/docs/).
 
-# Installation and Setup
+# :pushpin: Installation and Setup
 ```
 ~$ pip3 install twitter-stream.py
 ~$ export BEARER_TOKEN=BEARER TOKEN
 ```
 
-## Stargazers
-[![Stargazers repo roster for @twitivity/twitter-stream.py](http://bytecrank.com/nastyox/reporoster/php/stargazersSVG.php?user=twitivity&repo=twitter-stream.py)](https://github.com/nastyox/Rando.js/stargazers)
+## :purple_heart: Sponsor
+
+:small_blue_diamond: `BTC: bc1q2t4zv83g20u8gt2ly2cquwr57eawqxus092jwu`<br>
+:small_blue_diamond: `ETH: 0xf6169c013ac11eEFD5e87A60F8ED31AA75D874a7`
 
 
 
