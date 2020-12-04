@@ -10,7 +10,7 @@
         <a href="https://github.com/twitivity/twitter-stream.py"><img src="https://img.shields.io/pypi/l/twitter-stream.py" alt="Twitter APi V2" height="20"/></a>
 </p><br/><br/>
 
-# :rocket: What is Twitter Stream ?
+# :rocket: Why Twitter Stream ?
 [Twitter-Stream.py](https://github.com/twitivity/twitter-stream.py) a python API client for Twitter API v2 now supports 
 `FilteredStream`, `SampledStream`, `RecentSearch`, `TweetLookUp`, and  `UserLookUp`. It makes it easier to get started with Twitter's New API. 
 
