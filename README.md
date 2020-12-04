@@ -25,7 +25,7 @@ from twitter_stream import SampledStream
 class Stream(SampledStream):
     user_fields = ['name', 'location', 'public_metrics']
     expansions = ['author_id']
-    tweet_fields = ['created_at', 'geo']
+    tweet_fields = ['created_at']
 
 stream = Stream()
 for tweet in stream.connect():
@@ -34,7 +34,7 @@ for tweet in stream.connect():
 
 Is this all you have to do to start streaming? Yes. Are these all the data points available to you? No. Let's discuss `line number 5-7`. [Twitter's Official Documentation](https://developer.twitter.com/en/docs/twitter-api/tweets/sampled-stream/api-reference/get-tweets-sample-stream) lists an elaborate set of query parameters. You can use these queries to get the data you need. We are subclassing `SampledStream` and carefully constructing clear and eloquent queries in `line 5-7`. And you can do this for all the query parameters listed in the `SampledStream` [API Reference](https://developer.twitter.com/en/docs/twitter-api/tweets/sampled-stream/api-reference/get-tweets-sample-stream).
 
-To get more insights into other API endpoints. Visit the [examples](https://github.com/twitivity/twitter-stream.py/examples/) folder and our documentations [twitivity.dev](http://twitivity.dev/docs/).
+To get more insights into other API endpoints. Visit the [examples](https://github.com/twitivity/twitter-stream.py/tree/master/examples) folder and our documentations [twitivity.dev](http://twitivity.dev/docs/).
 
 # Installation and Setup
 ```
