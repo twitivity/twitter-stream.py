@@ -42,7 +42,7 @@ To get more insights into other API endpoints. Visit the [examples](https://gith
 ~$ export BEARER_TOKEN=BEARER TOKEN
 ```
 
-## :clap: Stargazers
+## Stargazers
 [![Stargazers repo roster for @twitivity/twitter-stream.py](http://bytecrank.com/nastyox/reporoster/php/stargazersSVG.php?user=twitivity&repo=twitter-stream.py)](https://github.com/nastyox/Rando.js/stargazers)
 
 
