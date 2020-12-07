@@ -297,8 +297,8 @@ def hide_replies(tweet: str, hidden: dict) -> json:
     """
 
     auth = OAuth1(
-        os.environ["CLIENT_KEY"],
-        os.environ["CLIENT_KEY_SECRET"],
+        os.environ["API_KEY"],
+        os.environ["API_KEY_SECRET"],
         os.environ["ACCESS_TOKEN"],
         os.environ["ACCESS_TOKEN_SECRET"],
         signature_type="auth_header",
