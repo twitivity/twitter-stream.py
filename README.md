@@ -37,7 +37,6 @@ To get more insights into other API endpoints. Visit the [examples](https://gith
 # Installation and Setup
 ```
 ~$ pip3 install twitter-stream.py
-~$ export BEARER_TOKEN=BEARER TOKEN
 ```
 <hr>
 
