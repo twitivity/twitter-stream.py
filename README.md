@@ -38,7 +38,7 @@ To get more insights into other API endpoints. Visit the [examples](https://gith
 ```
 ~$ pip3 install twitter-stream.py
 ```
-<hr>
+
 
 
 ## Contributing
