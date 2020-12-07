@@ -1,5 +1,5 @@
 
-<p align="center"><a href="https://github.com/twitivity/twitter-stream.py"><img src="https://avatars1.githubusercontent.com/u/74627580?s=400&u=2a5502073d9f5d79b08aeac58df8171b262cb010&v=4" height="120"/></a></p>
+<p align="center"><a href="https://github.com/twitivity/twitter-stream.py"><img src="/assets/twitte-stream.png"/></a></p>
 
 <h1 align="center">twitter-stream.py</h1>
 <p align="center">:snake: Python Client For Twitter API v2</p>
