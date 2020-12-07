@@ -133,3 +133,26 @@ class User(UserLookUp):
 user = User()
 print(json.dumps(user.get_details_by_username("TwitterDev"), indent=4))
 ```
+
+## Hide Replies
+
+```python
+from twitter_stream import hide_replies
+
+response = hide_replies(
+    tweet="https://twitter.com/saadmanrafat_/status/1327509412374740993",
+    hidden={"hidden": True} # {"hidden": False } in case of unhide
+    
+)
+print(response)
+
+OUTPUT:
+
+{
+    "data": {
+        "hidden": true
+    }
+}
+
+
+```
