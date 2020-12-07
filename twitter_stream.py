@@ -3,6 +3,8 @@ import os
 
 import requests
 
+from requests_oauthlib import OAuth1
+
 
 class API:
     _protocol: str = "https:/"
@@ -269,3 +271,43 @@ class UserLookUp(API):
     ) -> json:
         endpoint = endpoint + "/" + data
         return self.get(endpoint=endpoint)
+
+
+def hide_replies(tweet: str, hidden: dict) -> json:
+    """https://api.twitter.com/2/tweets/:id/hidden
+    Hides specific tweets from a conversation
+    :params: tweet: str = url  of the tweet to hide
+    :params: hidden: dict = {"hidden: True}
+    
+    :returns json 
+    
+    Usage:
+    
+    hide_replies(
+        tweet = 'https://twitter.com/saadmanrafat_/status/1328288598106443776',
+        {"hidden: True}
+    )
+    
+    response = 
+    {
+        "data": {
+            "hidden": true 
+        }
+    }
+    """
+
+    auth = OAuth1(
+        os.environ["CLIENT_KEY"],
+        os.environ["CLIENT_KEY_SECRET"],
+        os.environ["ACCESS_TOKEN"],
+        os.environ["ACCESS_TOKEN_SECRET"],
+        signature_type="auth_header",
+    )
+    tweet_id = tweet.split("/")[-1]
+    response = requests.put(
+        url=f"https://api.twitter.com/2/tweets/{tweet_id}/hidden",
+        headers={"Content-Type": "application/json"},
+        auth=auth,
+        data=json.dumps(hidden),
+    )
+    return json.dumps(response.json(), indent=4)
