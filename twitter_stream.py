@@ -13,6 +13,7 @@ class API:
     _product: str = None
     _endpoint: str = None
     _has_params: bool = None
+    _pagination: bool = False
     _params: dict = {}
     _stream: bool = None
     _data: dict = None
@@ -72,15 +73,24 @@ class API:
             if self._has_params:
                 self._params = self._query()
 
-            response = self.api(
-                method="GET",
-                endpoint=self._endpoint,
-                stream=self._stream,
-                params=self._params,
-            )
-            response.raise_for_status()
-            for response_lines in response.iter_lines():
-                yield json.loads(response_lines)
+            data = None
+
+            while True:
+                response = self.api(
+                    method="GET",
+                    endpoint=self._endpoint,
+                    stream=self._stream,
+                    params=self._params,
+                )
+                response.raise_for_status()
+                for response_lines in response.iter_lines():
+                    data = json.loads(response_lines)
+                    yield data
+
+                if not self._pagination:
+                    break
+                self._params["next_token"] = data["meta"]["next_token"]
+
         except Exception as e:
             raise e
 
@@ -222,6 +232,7 @@ class RecentSearch(API):
         "start_time",
         "until_id",
     ]
+    _pagination = True
 
 
 class TweetLookUp(API):
@@ -278,20 +289,20 @@ def hide_replies(tweet: str, hidden: dict) -> json:
     Hides specific tweets from a conversation
     :params: tweet: str = url  of the tweet to hide
     :params: hidden: dict = {"hidden: True}
-    
-    :returns json 
-    
+
+    :returns json
+
     Usage:
-    
+
     hide_replies(
         tweet = 'https://twitter.com/saadmanrafat_/status/1328288598106443776',
         {"hidden: True}
     )
-    
-    response = 
+
+    response =
     {
         "data": {
-            "hidden": true 
+            "hidden": true
         }
     }
     """
