@@ -34,8 +34,25 @@ Is this all you have to do to start streaming? Yes. Are these all the data point
 
 To get more insights into other API endpoints. Visit the [examples](https://github.com/twitivity/twitter-stream.py/tree/master/examples) folder and our documentations [twitivity.dev](http://twitivity.dev/docs/).
 
-# Installation and Setup
+# Installation
 ```
 ~$ pip3 install twitter-stream.py
+```
+## Credentials
+
+Store Twitter credentials at `~/.twitter-keys.yaml`. 
+
+```shell
+~$ vim ~/.twitter-keys.yaml
+```
+
+```
+keys:
+  consumer_key: CONSUMER_KEY
+  consumer_secret: CONSUMER_SECRET
+  access_token: ACCESS_TOKEN
+  access_token_secret: ACCESS_TOKEN_SECRET
+  bearer_token: BEARER_TOKEN
+
 ```
 
