@@ -46,7 +46,7 @@ Store Twitter credentials at `~/.twitter-keys.yaml`.
 ~$ vim ~/.twitter-keys.yaml
 ```
 
-```
+```yaml
 keys:
   consumer_key: CONSUMER_KEY
   consumer_secret: CONSUMER_SECRET
