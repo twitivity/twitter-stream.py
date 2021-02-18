@@ -340,7 +340,6 @@ class UserLookUp(API):
             user_id = self.get_details_by_username(username, query_params=False)[
                 "data"
             ]["id"]
-            print(user_id)
             params = self._query()
             while True:
                 data = requests.get(
