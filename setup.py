@@ -6,8 +6,8 @@ AUTHOR: str = "Saadman Rafat"
 DESCRIPTION: str = "Python Client For Twitter Streaming API v2"
 URL: str = "https://github.com/twitivity/twitter-stream.py"
 REQUIRES_PYTHON: str = ">=3.6.0"
-VERSION = "0.7.3"
-REQUIRED = ["requests", "requests-oauthlib"]
+VERSION = "0.8.4"
+REQUIRED = ["requests==2.25.0", "requests-oauthlib==1.3.0", "PyYAML==5.4.1"]
 EMAIL = "saadmanhere@gmail.com"
 
 with open(join(abspath(dirname(__file__)), "README.md"), encoding="utf-8") as f:
