@@ -2,8 +2,28 @@ import json
 import os
 
 import requests
+import yaml
 
 from requests_oauthlib import OAuth1
+from functools import wraps
+
+
+def auth(filename="~/.twitter-keys.yaml"):
+    def inner_function(func):
+        @wraps(func)
+        def wrapper(args, **kwargs):
+            try:
+                with open(os.path.expanduser(filename)) as credentials:
+                    credentials = yaml.safe_load(credentials)["keys"]
+            except (FileNotFoundError, KeyError) as exception:
+                raise exception
+            else:
+                kwargs["auth"] = credentials
+            return func(args, **kwargs)
+
+        return wrapper
+
+    return inner_function
 
 
 class API:
@@ -19,6 +39,7 @@ class API:
     _data: dict = None
     _exclude: list = []
 
+    @auth()
     def api(
         self,
         method: str,
@@ -26,6 +47,7 @@ class API:
         data: dict = None,
         stream: bool = None,
         params: dict = None,
+        **kwargs,
     ) -> json:
         try:
             with requests.Session() as r:
@@ -42,7 +64,7 @@ class API:
                     method=method,
                     headers={
                         "Content-type": "application/json",
-                        "Authorization": f"Bearer {os.environ['BEARER_TOKEN']}",
+                        "Authorization": f"Bearer {kwargs['auth']['bearer_token']}",
                     },
                     json=data,
                     stream=stream,
@@ -243,14 +265,15 @@ class TweetLookUp(API):
     (https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference)
     """
 
-    def get(self) -> json:
+    @auth()
+    def get(self, **kwargs) -> json:
         response = requests.request(
             method="GET",
             url="https://api.twitter.com/2/tweets",
             params=self._query(),
             headers={
                 "Content-type": "application/json",
-                "Authorization": f"Bearer {os.environ['BEARER_TOKEN']}",
+                "Authorization": f"Bearer {kwargs['auth']['bearer_token']}",
             },
         )
         return response.json()
@@ -261,27 +284,85 @@ class UserLookUp(API):
     Legacy Endpoint v1.1 users/lookup
     """
 
-    def get(self, endpoint: str = "https://api.twitter.com/2/users") -> json:
+    def _query(self) -> dict:
+        try:
+            _params: dict = {}
+            _exclude: list = ["max_results"]
+            for v in self.__class__.__dict__:
+                if v in _exclude:
+                    _params.update({v: ",".join(self.__class__.__dict__[v])})
+                if (
+                    not callable(getattr(self, v))
+                    and not v.startswith("__")
+                    and v not in _exclude
+                ):
+                    _params.update(
+                        {v.replace("_", "."): ",".join(self.__class__.__dict__[v])}
+                    )
+        except Exception as e:
+            raise e
+        return _params
+
+    @auth()
+    def get(
+        self,
+        endpoint: str = "https://api.twitter.com/2/users",
+        query_params=True,
+        **kwargs,
+    ) -> json:
         return requests.request(
             method="GET",
             url=endpoint,
-            params=self._query(),
+            params=self._query() if query_params else None,
             headers={
                 "Content-type": "application/json",
-                "Authorization": f"Bearer {os.environ['BEARER_TOKEN']}",
+                "Authorization": f"Bearer {kwargs['auth']['bearer_token']}",
             },
         ).json()
 
     def get_by_usernames(
-        self, endpoint: str = "https://api.twitter.com/2/users/by"
+        self, endpoint: str = "https://api.twitter.com/2/users/by", query_params=True
     ) -> json:
-        return self.get(endpoint=endpoint)
+        return self.get(endpoint=endpoint, query_params=query_params)
 
     def get_details_by_username(
-        self, data: str, endpoint: str = "https://api.twitter.com/2/users/by/username"
-    ) -> json:
+        self,
+        data: str,
+        endpoint: str = "https://api.twitter.com/2/users/by/username",
+        query_params=True,
+    ):
         endpoint = endpoint + "/" + data
-        return self.get(endpoint=endpoint)
+        return self.get(endpoint=endpoint, query_params=query_params)
+
+    @auth()
+    def followers(self, username, **kwargs):
+        try:
+            user_id = self.get_details_by_username(username, query_params=False)[
+                "data"
+            ]["id"]
+            print(user_id)
+            params = self._query()
+            while True:
+                data = requests.get(
+                    url=f"https://api.twitter.com/2/users/{user_id}/followers",
+                    params=params,
+                    headers={
+                        "Content-type": "application/json",
+                        "Authorization": f"Bearer {kwargs['auth']['bearer_token']}",
+                    },
+                )
+                print(data.url)
+                data.raise_for_status()
+                for response_lines in data.iter_lines():
+                    data = json.loads(response_lines)
+                    yield data
+
+                params["pagination_token"] = data["meta"]["next_token"]
+
+        except KeyError as k:
+            pass
+        except Exception as e:
+            raise e
 
 
 def hide_replies(tweet: str, hidden: dict) -> json:
@@ -296,7 +377,7 @@ def hide_replies(tweet: str, hidden: dict) -> json:
 
     hide_replies(
         tweet = 'https://twitter.com/saadmanrafat_/status/1328288598106443776',
-        {"hidden: True}
+        {"hidden": True}
     )
 
     response =
@@ -306,12 +387,17 @@ def hide_replies(tweet: str, hidden: dict) -> json:
         }
     }
     """
+    try:
+        with open(os.path.expanduser("~/.twitter-keys.yaml")) as credentials:
+            credentials = yaml.safe_load(credentials)["keys"]
+    except (FileNotFoundError, KeyError) as e:
+        raise e
 
     auth = OAuth1(
-        os.environ["API_KEY"],
-        os.environ["API_KEY_SECRET"],
-        os.environ["ACCESS_TOKEN"],
-        os.environ["ACCESS_TOKEN_SECRET"],
+        client_key=credentials["consumer_key"],
+        client_secret=credentials["consumer_secret"],
+        resource_owner_key=credentials["access_token"],
+        resource_owner_secret=credentials["access_token_secret"],
         signature_type="auth_header",
     )
     tweet_id = tweet.split("/")[-1]
