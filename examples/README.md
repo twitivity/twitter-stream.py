@@ -135,17 +135,17 @@ print(json.dumps(user.get_details_by_username("TwitterDev"), indent=4))
 ```
 
 ## Hide Replies
-```angular2html
- consumer_key: CONSUMER_KEY
-  consumer_secret: CONSUMER_SECRET
-  access_token: ACCESS_TOKEN
-  access_token_secret: ACCESS_TOKEN_SECRET
-  bearer_token: BEARER_TOKEN
+
+```yaml
+keys:
+    consumer_key: CONSUMER_KEY
+    consumer_secret: CONSUMER_SECRET
+    access_token: ACCESS_TOKEN
+    access_token_secret: ACCESS_TOKEN_SECRET
+    bearer_token: BEARER_TOKEN
 ```
 
 ```python
-
-
 
 from twitter_stream import hide_replies
 
