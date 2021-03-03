@@ -136,10 +136,11 @@ print(json.dumps(user.get_details_by_username("TwitterDev"), indent=4))
 
 ## Hide Replies
 ```angular2html
-~$ export $API_KEY=API_KEY
-~$ export $API_KEY_SECRET=API_KEY_SECRET
-~$ export $ACCESS_TOKEN=ACCESS_TOKEN
-~$ export $ACCESS_TOKEN_SECRET=ACCESS_TOKEN_SECRET
+ consumer_key: CONSUMER_KEY
+  consumer_secret: CONSUMER_SECRET
+  access_token: ACCESS_TOKEN
+  access_token_secret: ACCESS_TOKEN_SECRET
+  bearer_token: BEARER_TOKEN
 ```
 
 ```python
