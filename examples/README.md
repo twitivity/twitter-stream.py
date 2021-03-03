@@ -136,6 +136,8 @@ print(json.dumps(user.get_details_by_username("TwitterDev"), indent=4))
 
 ## Hide Replies
 
+Store Credentials at `~/.twitter-keys.yaml`
+
 ```yaml
 keys:
     consumer_key: CONSUMER_KEY
