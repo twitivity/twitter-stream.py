@@ -103,6 +103,10 @@ class API:
                 )
                 response.raise_for_status()
                 for response_lines in response.iter_lines():
+                    # Twitter streaming API will send an empty line At least every 20 seconds to keep the connection open
+                    if len(response_lines) == 0:
+                        continue
+
                     data = json.loads(response_lines)
                     yield data
 
