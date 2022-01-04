@@ -77,15 +77,12 @@ class API:
     def _query(self) -> dict:
         self._params = {}
         try:
-            [
-                self._params.update(
-                    {v.replace("_", "."): ",".join(self.__class__.__dict__[v])}
-                )
-                for v in self.__class__.__dict__
-                if not callable(getattr(self, v))
-                and not v.startswith("__")
-                and v not in self._exclude
-            ]
+            for v in self.__class__.__dict__:
+                if not callable(getattr(self, v)) and not v.startswith("__"):
+                    vk = v
+                    if v not in self._exclude:
+                        vk = v.replace("_", ".")
+                    self._params[vk]= ",".join(self.__class__.__dict__[v])
             return self._params
         except Exception as e:
             raise e
@@ -350,7 +347,6 @@ class UserLookUp(API):
                         "Authorization": f"Bearer {kwargs['auth']['bearer_token']}",
                     },
                 )
-                print(data.url)
                 data.raise_for_status()
                 for response_lines in data.iter_lines():
                     data = json.loads(response_lines)
