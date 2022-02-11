@@ -53,8 +53,18 @@ rules: list = [
     {"value": "dog has:images", "tag": "dog pictures"},
     {"value": "cat has:images -grumpy", "tag": "cat pictures"}
 ]
+
+#These fields expand the data the Twitter API returns to you. 
+class Stream=(FilteredStream):
+    user_fields = ['name', 'location', 'public_metrics']
+    expansion = ['author_id']
+    tweet_fields = ['created_at']
+
 stream = FilteredStream()
 
+#The rules are interacted with via a POST request to add/delete/modify, and a GET request to retrieve
+stream.delete_all_rules()
+stream.get_rules()
 stream.add_rule(data={"add": rules})
 
 for tweet in stream.connect():

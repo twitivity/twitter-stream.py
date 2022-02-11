@@ -127,6 +127,7 @@ class FilteredStream(API):
     _product = "tweets"
     _endpoint = "search/stream"
     _stream = True
+    _has_params = True
 
     def add_rule(self, data: dict) -> json:
         """Add or Remove upto 25 rules.
@@ -181,7 +182,7 @@ class FilteredStream(API):
     def delete_all_rules(self) -> json:
         """Deletes all your rules automatically"""
         try:
-            rules = self.get_rules().json()
+            rules = self.get_rules()
             ids = list(map(lambda rule: rule["id"], rules["data"]))
             return self.delete_rule({"delete": {"ids": ids}})
         except Exception as e:
